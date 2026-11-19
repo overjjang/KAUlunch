@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#003b70"/>
+  <path d="M13 18c9-7 29-7 38 0-9 5-29 5-38 0Z" fill="#f5b335"/>
+  <path d="m31 10 3 6 13 3-10 3-5 7-3-7-10-3 13-3Z" fill="#fff"/>
+  <rect x="9" y="29" width="46" height="26" rx="8" fill="#fff"/>
+  <rect x="14" y="34" width="32" height="16" rx="5" fill="#dbe8f3"/>
+  <path d="M17 38h26M17 46h26" stroke="#a9c2d6" stroke-width="1.5"/>
+  <text x="30" y="44.5" fill="#003b70" font-family="Arial, sans-serif" font-size="8" font-weight="700" text-anchor="middle">KAU</text>
+  <path d="M49 35v15m-4-15v5m8-5v5" stroke="#003b70" stroke-width="2" stroke-linecap="round"/>
+</svg>
