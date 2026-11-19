@@ -9,7 +9,7 @@
 body {
   min-height: 100vh;
   margin: 0;
-  background: linear-gradient(160deg, #dff4ff 0%, #f5fbff 52%, #fff 100%);
+  background: linear-gradient(160deg, #8fcff0 0%, #bfe7fa 48%, #eaf7ff 100%);
   transition: background 0.35s ease, color 0.35s ease;
 }
 button, input { font: inherit; }
