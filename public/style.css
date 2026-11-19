@@ -9,9 +9,34 @@
 body {
   min-height: 100vh;
   margin: 0;
+  background: linear-gradient(160deg, #dff4ff 0%, #f5fbff 52%, #fff 100%);
   transition: background 0.35s ease, color 0.35s ease;
 }
 button, input { font: inherit; }
+body::before,
+body::after {
+  position: fixed;
+  z-index: 0;
+  width: 220px;
+  height: 75px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 62%);
+  filter: blur(7px);
+  content: "";
+  opacity: 0.7;
+  pointer-events: none;
+}
+body::before {
+  top: 16%;
+  left: -60px;
+  box-shadow: 42px 12px 0 8px rgb(255 255 255 / 58%), 78px -4px 0 2px rgb(255 255 255 / 52%);
+}
+body::after {
+  top: 42%;
+  right: -90px;
+  transform: scale(0.82);
+  box-shadow: -45px 10px 0 8px rgb(255 255 255 / 58%), -82px -5px 0 1px rgb(255 255 255 / 50%);
+}
 .easter-egg-plane {
   position: fixed;
   z-index: 2;
@@ -154,6 +179,7 @@ body.dark-mode::after {
   height: 2px;
   border-radius: 50%;
   background: #fff;
+  filter: none;
   box-shadow:
     8vw 12vh #fff, 19vw 28vh #9fc5ff, 31vw 9vh #fff, 44vw 22vh #d9e8ff,
     58vw 13vh #fff, 73vw 30vh #a9caff, 88vw 16vh #fff, 94vw 47vh #d9e8ff,
