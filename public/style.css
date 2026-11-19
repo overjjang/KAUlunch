@@ -29,15 +29,15 @@ button, input { font: inherit; }
 .easter-egg-plane::before,
 .easter-egg-plane::after {
   position: absolute;
-  top: 50%;
+  left: 50%;
   width: 3px;
   height: 3px;
   border-radius: 50%;
   background: transparent;
   content: "";
 }
-.easter-egg-plane::before { left: 3px; }
-.easter-egg-plane::after { right: 3px; }
+.easter-egg-plane::before { top: 0; }
+.easter-egg-plane::after { top: auto; bottom: 0; }
 body.dark-mode .easter-egg-plane { color: #dce8ff; }
 body.dark-mode .easter-egg-plane::before,
 body.dark-mode .easter-egg-plane::after {

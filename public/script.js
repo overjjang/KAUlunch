@@ -91,8 +91,15 @@ const setTheme = (isDark) => {
 const savedTheme = localStorage.getItem("kau-theme");
 setTheme(savedTheme === "dark");
 themeToggle.addEventListener("click", () => setTheme(!document.body.classList.contains("dark-mode")));
+const easterEggPlane = document.querySelector("#easter-egg-plane");
+const flyPlane = () => {
+  easterEggPlane.classList.remove("fly");
+  void easterEggPlane.offsetWidth;
+  easterEggPlane.classList.add("fly");
+};
 window.setTimeout(() => {
-  document.querySelector("#easter-egg-plane").classList.add("fly");
+  flyPlane();
+  window.setInterval(flyPlane, 60 * 1000);
 }, 60 * 1000);
 dateInput.value = toDateValue(new Date());
 dateInput.addEventListener("change", loadMenus);
