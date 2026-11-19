@@ -4,6 +4,7 @@ const dateInput = document.querySelector("#menu-date");
 const restaurantSelect = document.querySelector("#restaurant-select");
 const menuList = document.querySelector("#menu-list");
 const status = document.querySelector("#status");
+const themeToggle = document.querySelector("#theme-toggle");
 const dayInMilliseconds = 24 * 60 * 60 * 1000;
 
 const toDateValue = (date) => {
@@ -79,6 +80,17 @@ const moveDate = (days) => {
   loadMenus();
 };
 
+const setTheme = (isDark) => {
+  document.body.classList.toggle("dark-mode", isDark);
+  themeToggle.textContent = isDark ? "☀" : "☾";
+  themeToggle.setAttribute("aria-label", isDark ? "라이트모드 켜기" : "다크모드 켜기");
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  localStorage.setItem("kau-theme", isDark ? "dark" : "light");
+};
+
+const savedTheme = localStorage.getItem("kau-theme");
+setTheme(savedTheme === "dark");
+themeToggle.addEventListener("click", () => setTheme(!document.body.classList.contains("dark-mode")));
 dateInput.value = toDateValue(new Date());
 dateInput.addEventListener("change", loadMenus);
 restaurantSelect.addEventListener("change", loadMenus);
