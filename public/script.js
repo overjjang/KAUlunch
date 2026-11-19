@@ -15,13 +15,15 @@ const renderMenus = (menus) => {
   menuList.replaceChildren();
   const labels = { breakfast: "조식", lunch: "중식", dinner: "석식" };
   Object.entries(menus).forEach(([key, value]) => {
+    const entries = Array.isArray(value)
+      ? value.map((entry) => typeof entry === "string" ? { category: labels[key], menu: entry } : entry)
+      : [value];
+    if (entries.length === 0) return;
     const card = document.createElement("article");
     card.className = "menu-card";
     const title = document.createElement("h2");
     title.textContent = labels[key];
-    const entries = Array.isArray(value)
-      ? value.map((entry) => typeof entry === "string" ? { category: labels[key], menu: entry } : entry)
-      : [value];
+    card.append(title);
     entries.forEach((entry) => {
       const option = document.createElement("section");
       option.className = "menu-option";
