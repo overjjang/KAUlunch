@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>항공대학교 오늘의 학식</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">KOREA AEROSPACE UNIVERSITY</p>
+        <h1>오늘의 학식</h1>
+        <p class="subtitle">한국항공대학교 식단을 한눈에 확인하세요.</p>
+      </header>
+
+      <section class="toolbar" aria-label="식단 조회">
+        <label for="restaurant-select">식당</label>
+        <select id="restaurant-select">
+          <option value="10">학생식당</option>
+          <option value="20">교직원식당</option>
+        </select>
+        <label for="menu-date">조회 날짜</label>
+        <div class="date-controls">
+          <button id="previous-day" class="icon-button" type="button" aria-label="이전 날짜">←</button>
+          <input id="menu-date" type="date" />
+          <button id="next-day" class="icon-button" type="button" aria-label="다음 날짜">→</button>
+        </div>
+      </section>
+
+      <p id="status" class="status" role="status">식단을 불러오는 중입니다.</p>
+      <section id="menu-list" class="menu-grid" aria-live="polite"></section>
+
+      <footer>
+        <p>식단 정보는 한국항공대학교 생활관 주간식단 페이지를 기준으로 제공됩니다.</p>
+        <p>정보가 변경될 수 있으니 이용 전 공식 안내를 함께 확인해주세요.</p>
+      </footer>
+    </main>
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>

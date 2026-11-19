@@ -1,0 +1,12 @@
+{
+  "name": "kau-lunch-menu",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name kau-lunch-menu"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
