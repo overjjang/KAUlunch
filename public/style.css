@@ -12,6 +12,45 @@ body {
   transition: background 0.35s ease, color 0.35s ease;
 }
 button, input { font: inherit; }
+.easter-egg-plane {
+  position: fixed;
+  z-index: 2;
+  top: 24%;
+  left: -40px;
+  color: #64748b;
+  font-size: 1.15rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+.easter-egg-plane.fly {
+  animation: fly-across 10s linear forwards;
+}
+.easter-egg-plane::before,
+.easter-egg-plane::after {
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+}
+.easter-egg-plane::before { left: 3px; }
+.easter-egg-plane::after { right: 3px; }
+body.dark-mode .easter-egg-plane { color: #dce8ff; }
+body.dark-mode .easter-egg-plane::before,
+body.dark-mode .easter-egg-plane::after {
+  background: #ffd86b;
+  box-shadow: 0 0 6px 2px rgb(255 216 107 / 80%);
+}
+
+@keyframes fly-across {
+  0% { left: -40px; opacity: 0; }
+  8% { opacity: 0.9; }
+  92% { opacity: 0.9; }
+  100% { left: calc(100% + 40px); opacity: 0; }
+}
 
 .page-shell {
   position: relative;

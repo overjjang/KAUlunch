@@ -91,6 +91,9 @@ const setTheme = (isDark) => {
 const savedTheme = localStorage.getItem("kau-theme");
 setTheme(savedTheme === "dark");
 themeToggle.addEventListener("click", () => setTheme(!document.body.classList.contains("dark-mode")));
+window.setTimeout(() => {
+  document.querySelector("#easter-egg-plane").classList.add("fly");
+}, 60 * 1000);
 dateInput.value = toDateValue(new Date());
 dateInput.addEventListener("change", loadMenus);
 restaurantSelect.addEventListener("change", loadMenus);
