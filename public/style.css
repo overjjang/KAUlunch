@@ -41,9 +41,10 @@ button, input { font: inherit; }
 body.dark-mode .easter-egg-plane { color: #dce8ff; }
 body.dark-mode .easter-egg-plane::before,
 body.dark-mode .easter-egg-plane::after {
-  background: #ffd86b;
-  box-shadow: 0 0 6px 2px rgb(255 216 107 / 80%);
+  box-shadow: 0 0 6px 2px currentColor;
 }
+body.dark-mode .easter-egg-plane::before { background: #55e58a; color: rgb(85 229 138 / 80%); }
+body.dark-mode .easter-egg-plane::after { background: #ff6575; color: rgb(255 101 117 / 80%); }
 
 @keyframes fly-across {
   0% { left: -40px; opacity: 0; }
