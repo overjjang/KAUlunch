@@ -15,15 +15,38 @@ const renderMenus = (menus) => {
   menuList.replaceChildren();
   const labels = { breakfast: "조식", lunch: "중식", dinner: "석식" };
   Object.entries(menus).forEach(([key, value]) => {
-    const label = Array.isArray(value) ? labels[key] : value.label;
-    const menu = Array.isArray(value) ? value.join("\n\n") : value.menu;
     const card = document.createElement("article");
     card.className = "menu-card";
     const title = document.createElement("h2");
-    title.textContent = label;
-    const content = document.createElement("p");
-    content.textContent = menu || "등록된 식단이 없습니다.";
-    card.append(title, content);
+    title.textContent = labels[key];
+    const entries = Array.isArray(value)
+      ? value.map((entry) => typeof entry === "string" ? { category: labels[key], menu: entry } : entry)
+      : [value];
+    entries.forEach((entry) => {
+      const option = document.createElement("section");
+      option.className = "menu-option";
+      const optionHeader = document.createElement("div");
+      optionHeader.className = "menu-option-header";
+      const category = document.createElement("h3");
+      category.textContent = entry.category || labels[key];
+      optionHeader.append(category);
+      if (entry.price) {
+        const price = document.createElement("span");
+        price.className = "price";
+        price.textContent = entry.price;
+        optionHeader.append(price);
+      }
+      const content = document.createElement("p");
+      content.textContent = entry.menu || "등록된 식단이 없습니다.";
+      option.append(optionHeader, content);
+      if (entry.hours) {
+        const hours = document.createElement("small");
+        hours.className = "hours";
+        hours.textContent = entry.hours;
+        option.append(hours);
+      }
+      card.append(option);
+    });
     menuList.append(card);
   });
 };

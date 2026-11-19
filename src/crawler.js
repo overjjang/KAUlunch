@@ -2,13 +2,28 @@ const SOURCE_URL = "https://kid.kau.ac.kr/menu_weekly_sub.asp";
 
 const cleanText = (value) =>
   value
-    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<br[^>]*\/?>/gi, "\n")
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/\s+\n/g, "\n")
     .replace(/\n\s+/g, "\n")
     .trim();
+
+const parseMenuCell = (html) => {
+  const items = [...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map((match) => cleanText(match[1]));
+  const title = items[0] || cleanText(html);
+  const meal = title.match(/^(조식|중식|석식)/);
+  if (!meal) return null;
+  const category = title.match(/\(([^)]+)\)/)?.[1] || meal[1];
+  const price = title.match(/([\d,]+)\s*원/)?.[1] || null;
+  return {
+    category,
+    price: price ? `${price}원` : null,
+    menu: items[1] || "",
+    hours: items[2] || "",
+  };
+};
 
 export const sourceUrlFor = (date, restaurant = "10") =>
   `${SOURCE_URL}?value1=${date}&value3=k&value2=${encodeURIComponent(restaurant)}`;
@@ -24,11 +39,11 @@ export const parseMenuHtml = (html, date) => {
   const menus = { breakfast: [], lunch: [], dinner: [] };
   const cells = [...row[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)];
   cells.slice(1).forEach((cell) => {
-    const text = cleanText(cell[1]);
-    const meal = text.match(/^(조식|중식|석식)/);
-    if (!meal) return;
+    const parsed = parseMenuCell(cell[1]);
+    if (!parsed) return;
+    const meal = cleanText(cell[1]).match(/^(조식|중식|석식)/);
     const key = meal[1] === "조식" ? "breakfast" : meal[1] === "중식" ? "lunch" : "dinner";
-    menus[key].push(text);
+    menus[key].push(parsed);
   });
   if (Object.values(menus).every((menu) => menu.length === 0)) throw new Error("menu structure not found");
   return menus;
